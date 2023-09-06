@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Module Scape</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+
+
+ <style>
+        /* Updated style name to .custom-img-style */
+        .custom-img-style {
+            display: block;
+            margin: 0 auto;
+            width: 100%;
+            height: auto;
+        }
+		 .final-img-style {
+            display: block;
+            margin: auto;
+            width: ;
+            height: auto;
+			
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: top;
+			height:20%;
+			column-gap:75px;
+			margin-bottom:200px;
+        }
+        .image-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .dropdown-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+
+  <!-- Navigation -->
+  <header> <a href="ModuleScape.html">
+  <div id="img">
+	<img src="images/logo.png" height="30px">
+  </div>
+    <h4 class="logo">BuildStacks</h4>
+    </a>
+    <nav>
+      <ul>
+		<li><a href="about.html">About</a></li>
+		<li><a href="Gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+     <li><div class="search-container">
+		<form action="/action_page.php">
+      <input type="text" placeholder="Search.." name="search">
+      <button type="submit">GO </button>
+    </form></li>
+  </div>
+      </ul>
+    </nav>
+  </header>
+  
+<!-- Main Container -->
+
+
+<div class="container-gallery">
+<br>
+<br>  
+  <!-- Slideshow -->
+   <section class="carousel">
+ 
+  <div class="slideshow-container">
+<div class="mySlides fade">
+  <img src="images/buildstacks.png" width="100%">
+ 
+</div>
+<div class="mySlides fade">
+  <img src="images/Elevate.png" width="100%">
+
+</div>
+<div class="mySlides fade">
+  <img src="images/Floor_plan.png" width="100%">
+
+</div>
+</div>
+<a class="prev" onclick="plusSlides(-1)">❮</a>
+<a class="next" onclick="plusSlides(1)">❯</a>
+
+
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span> 
+  <span class="dot" onclick="currentSlide(2)"></span> 
+  <span class="dot" onclick="currentSlide(3)"></span> 
+</div>
+
+
+<script>
+let slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+}
+</script>
+</section>
+
+<!--selection area-->
+
+    <div class="container">
+        <!-- Create an image element for body-texture -->
+        <div class="image-container">
+            <!-- Updated class name to .custom-img-style -->
+            <img id="body-image" src="images/body/wood.png" alt="Body Texture" class="custom-img-style">
+            <!-- Create a dropdown list for body-texture -->
+            <label for="body-select">Select a body texture:</label>
+            <select id="body-select" onchange="changeBodyImage()">
+			<option value="images/body/wood.png">Select a texture...</option>
+                <option value="images/body/wood.png">Wood</option>
+                <option value="images/body/Popcorn.png">Popcorn Concrete</option>
+                <option value="images/body/Brick.png">Brick</option>
+            </select>
+        </div>
+
+        <!-- Create an image element for door-texture -->
+        <div class="image-container">
+            <!-- Updated class name to .custom-img-style -->
+            <img id="door-image" src="images/Door/wood.png" alt="Door Texture" class="custom-img-style">
+            <!-- Create a dropdown list for door-texture -->
+            <label for="door-select">Select a door texture:</label>
+            <select id="door-select" onchange="changeDoorImage()">
+			<option value="images/door/wood.png"">Select a texture...</option>
+                <option value="images/door/Wood.png">Wood</option>
+                <option value="images/door/Metal.png">Metal</option>
+
+            </select>
+        </div>
+
+        <!-- Create an image element for window-texture -->
+        <div class="image-container">
+            <!-- Updated class name to .custom-img-style -->
+            <img id="window-image" src="images/window/wood.png" alt="Window Texture" class="custom-img-style">
+            <!-- Create a dropdown list for window-texture -->
+            <label for="window-select">Select a window texture:</label>
+            <select id="window-select" onchange="changeWindowImage()">
+			<option value="images/window/wood.png">Select a texture...</option>
+                <option value="images/window/Wood.png">Wood</option>
+                <option value="images/window/Metal.png">Metal</option>
+            </select>
+        </div>
+    </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+    <!-- Create an image element for the final image -->
+    <!-- Updated class name to .custom-img-style -->
+    <img id="final-image" src="images/placeholder.png" alt="Placeholder Image" style="display:none;" class="final-img-style" width="50%">
+<br>
+<br>
+    <script type="text/javascript">
+        // Define an object to map combinations to final images
+        var imageCombinations = {
+			'images/body/wood.png-images/door/Wood.png-images/window/Wood.png': 'images/final/w-w-w.png',
+			'images/body/wood.png-images/door/Wood.png-images/window/Metal.png': 'images/final/w-w-m.png',
+			'images/body/wood.png-images/door/Metal.png-images/window/Wood.png': 'images/final/w-m-w.png',
+			'images/body/wood.png-images/door/Metal.png-images/window/Metal.png': 'images/final/w-m-m.png',
+			'images/body/Popcorn.png-images/door/Wood.png-images/window/Wood.png': 'images/final/pc-w-w.png',
+			'images/body/Popcorn.png-images/door/Wood.png-images/window/Metal.png': 'images/final/pc-w-m.png',
+			'images/body/Popcorn.png-images/door/Metal.png-images/window/Wood.png': 'images/final/pc-m-w.png',
+			'images/body/Popcorn.png-images/door/Metal.png-images/window/Metal.png': 'images/final/pc-m-m.png',
+			'images/body/Brick.png-images/door/Wood.png-images/window/Wood.png': 'images/final/b-w-w.png',
+			'images/body/Brick.png-images/door/Wood.png-images/window/Metal.png': 'images/final/b-w-m.png',
+			'images/body/Brick.png-images/door/Metal.png-images/window/Wood.png': 'images/final/b-m-w.png',
+			'images/body/Brick.png-images/door/Metal.png-images/window/Metal.png': 'images/final/b-m-m.png',
+			
+    // Add more combinations here...
+};
+
+        function changeBodyImage() {
+            var bodyImage = document.getElementById("body-image");
+            var bodySelect = document.getElementById("body-select");
+            bodyImage.src = bodySelect.value;
+            bodyImage.alt = bodySelect.options[bodySelect.selectedIndex].text;
+
+            // Call the function to update the final image
+            updateFinalImage();
+        }
+
+        function changeDoorImage() {
+            var doorImage = document.getElementById("door-image");
+            var doorSelect = document.getElementById("door-select");
+            doorImage.src = doorSelect.value;
+            doorImage.alt = doorSelect.options[doorSelect.selectedIndex].text;
+
+            // Call the function to update the final image
+            updateFinalImage();
+        }
+
+        function changeWindowImage() {
+            var windowImage = document.getElementById("window-image");
+            var windowSelect = document.getElementById("window-select");
+            windowImage.src = windowSelect.value;
+            windowImage.alt = windowSelect.options[windowSelect.selectedIndex].text;
+
+            // Call the function to update the final image
+            updateFinalImage();
+        }
+
+        function updateFinalImage() {
+            // Get the selected textures
+            var bodyTexture = document.getElementById("body-select").value;
+            var doorTexture = document.getElementById("door-select").value;
+            var windowTexture = document.getElementById("window-select").value;
+
+            // Generate a key for the combination
+            var combinationKey = `${bodyTexture}-${doorTexture}-${windowTexture}`;
+
+            // Check if the combination exists in the map
+            if (imageCombinations.hasOwnProperty(combinationKey)) {
+                // Set the final image source based on the combination
+                var finalImage = document.getElementById("final-image");
+                finalImage.src = imageCombinations[combinationKey];
+                finalImage.alt = "Final Image";
+                finalImage.style.display = "block";
+            } else {
+                // If the combination is not found, show a placeholder image
+                var finalImage = document.getElementById("final-image");
+                finalImage.src = "images/placeholder.png";
+                finalImage.alt = "Placeholder Image";
+                finalImage.style.display = "block";
+            }
+        }
+    </script>
+
+
+</div>
+
+
+
+  
+  
+  
+  
+ <footer class="footer">
+ <div class="media-box">
+<ul class="social-icon">
+
+	  <li class="social-icon__item"><a class="social-icon__link" href="#">
+          <ion-icon name="logo-instagram"></ion-icon>
+        </a></li>
+		
+       <li class="social-icon__item"><a class="social-icon__link" href="#">
+          <ion-icon name="logo-twitter"></ion-icon>
+        </a></li>  
+		<li class="social-icon__item"><a class="social-icon__link" href="#">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </a></li>
+   
+      <li class="social-icon__item"><a class="social-icon__link" href="#">
+          <ion-icon name="logo-linkedin"></ion-icon>
+        </a></li>
+    </ul>
+ </div>
+ <div class="mpt">
+<a href="#">Privacy</a>&nbsp <a href="#">Terms</a>
+ </div>
+   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  
+  
+ <div class="email-box">
+ <p><strong>Find Out More:</strong>
+ <form action="/action_page.php">
+  <input type="email" placeholder="Email..." id="email" name="email">
+  <input type="submit">
+</form></p>
+<div class="scape">&copy;2023 ModuleScape | All Rights Reserved</div>
+
+
+</div>
+ </footer>
+</body>
+
+</html>
